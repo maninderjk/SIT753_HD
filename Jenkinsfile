@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        PATH = "/opt/anaconda3/bin:${env.PATH}"
-    }
 
     stages {
         stage('Checkout') {
