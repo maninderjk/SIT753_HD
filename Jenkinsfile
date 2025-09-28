@@ -10,15 +10,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "Building Docker image..."
-                sh 'docker build -t flask-task-manager .'
+                echo "Installing dependencies..."
+                sh 'pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                echo "Running tests with pytest..."
-                sh 'pip install -r requirements.txt'
+                echo "Running tests..."
                 sh 'pytest --maxfail=1 --disable-warnings -q'
             }
         }
