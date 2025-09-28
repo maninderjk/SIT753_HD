@@ -6,6 +6,10 @@ from utils import get_current_timestamp
 app = Flask(__name__)
 tasks = load_tasks()
 
+@app.route('/')
+def health_check():
+    return "OK", 200
+
 @app.route('/tasks', methods=['GET'])
 def list_tasks():
     return jsonify([task.to_dict() for task in tasks]), 200
