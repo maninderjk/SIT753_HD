@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/opt/anaconda3/bin:${env.PATH}"
+    }
 
     stages {
         stage('Checkout') {
@@ -10,10 +13,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "Installing dependencies..."
-                sh 'pip install -r requirements.txt'
+                echo 'Installing dependencies...'
+                sh '/opt/anaconda3/bin/python3 -m pip install --upgrade pip'
+                sh '/opt/anaconda3/bin/python3 -m pip install -r requirements.txt'
             }
         }
+
 
         stage('Test') {
             steps {
